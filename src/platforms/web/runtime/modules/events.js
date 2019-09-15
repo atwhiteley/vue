@@ -46,6 +46,8 @@ const isCEP93orEarlier = isCEP &&
       (typeof window.__adobe_cep__.getCurrentApiVersion !== 'function' ||
       ((maxBadMajor, maxBadMinor) => {
   const version = JSON.parse(window.__adobe_cep__.getCurrentApiVersion())
+  return version.major <= maxBadMajor && version.minor <= maxBadMinor
+})(9, 3))
 
 // #9446: Firefox <= 53 (in particular, ESR 52) has incorrect Event.timeStamp
 // implementation and does not fire microtasks in between event propagation, so
